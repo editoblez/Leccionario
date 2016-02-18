@@ -107,7 +107,7 @@
     <string name="error_json">Error en el manejo de datos</string>
 
 
-    <string name="success_msg">Operación Exitosa</string>
+    <string name="success_msg">Operación exitosa</string>
     <string name="title_activity_crear_hora">crearHoraActivity</string>
     <string name="title_activity_crear_incidencia">crearIncidenciaActivity</string>
 
