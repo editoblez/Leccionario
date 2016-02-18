@@ -33,4 +33,20 @@
     <item android:id="@+id/action_update_lecc"
         android:title="@string/action_update_lecc"
         app:showAsAction="never"/>
+
+    <item android:id="@+id/action_create_insidencia"
+        android:title="@string/action_crear_incidencia"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_update_incidencia"
+        android:title="@string/action_update_incidencia"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_create_hora"
+        android:title="@string/action_crear_hora"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_update_hora"
+        android:title="@string/action_update_hora"
+        app:showAsAction="never"/>
+
+
 </menu>
