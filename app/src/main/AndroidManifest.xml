@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ecu.universidades.leccionario">
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".InstructorActivity"
+            android:label="@string/title_activity_instructor"
+            android:parentActivityName=".LoginActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.LoginActivity" />
+        </activity>
+        <activity
+            android:name=".ProfesorActivity"
+            android:label="@string/title_activity_profesor"
+            android:parentActivityName=".LoginActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.LoginActivity" />
+        </activity>
+        <activity
+            android:name=".CrearUsuarioActivity"
+            android:label="@string/title_activity_crear_usuario"
+            android:parentActivityName=".InstructorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.InstructorActivity" />
+        </activity>
+        <activity
+            android:name=".CrearAsignaturaActivity"
+            android:label="@string/title_activity_crear_asignatura"
+            android:parentActivityName=".InstructorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.InstructorActivity" />
+        </activity>
+        <activity
+            android:name=".CrearGrupoActivity"
+            android:label="@string/title_crear_grupo"
+            android:parentActivityName=".InstructorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.InstructorActivity" />
+        </activity>
+        <!--
+             ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".CrearLeccionarioActivity"
+            android:label="@string/title_activity_crear_leccionario"
+            android:parentActivityName=".InstructorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.InstructorActivity" />
+        </activity>
+        <activity
+            android:name=".ActProfesorActivity"
+            android:label="@string/title_activity_act_profesor"
+            android:parentActivityName=".ProfesorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.ProfesorActivity" />
+        </activity>
+        <activity
+            android:name=".IngresarTurnoActivity"
+            android:label="@string/title_activity_ingresar_turno"
+            android:parentActivityName=".ProfesorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.ProfesorActivity" />
+        </activity>
+        <activity
+            android:name=".RegistrarObservacionActivity"
+            android:label="@string/title_activity_registrar_observacion"
+            android:parentActivityName=".ProfesorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.ProfesorActivity" />
+        </activity>
+        <activity
+            android:name=".ActualiazarUsuarioActivity"
+            android:label="@string/title_activity_actualiazar_usuario"
+            android:parentActivityName=".InstructorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.InstructorActivity" />
+        </activity>
+        <activity
+            android:name=".ActualizarAsignaturaActivity"
+            android:label="@string/title_activity_actualizar_asignatura"
+            android:parentActivityName=".InstructorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.InstructorActivity" />
+        </activity>
+        <activity
+            android:name=".ActualizarGrupoActivity"
+            android:label="@string/title_activity_actualizar_grupo"
+            android:parentActivityName=".InstructorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.InstructorActivity" />
+        </activity>
+        <activity
+            android:name=".ActualizarLeccionarioActivity"
+            android:label="@string/title_activity_actualizar_leccionario"
+            android:parentActivityName=".InstructorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.InstructorActivity" />
+        </activity>
+        <activity
+            android:name=".CrearTemaActivity"
+            android:label="@string/title_activity_crear_tema"
+            android:parentActivityName=".InstructorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.InstructorActivity" />
+        </activity>
+        <activity
+            android:name=".ActualizarTemaActivity"
+            android:label="@string/title_activity_actualizar_tema"
+            android:parentActivityName=".InstructorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.InstructorActivity" />
+        </activity>
+        <activity
+            android:name=".ChangePassActivity"
+            android:label="@string/title_activity_change_pass"
+            android:parentActivityName=".ProfesorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.ProfesorActivity" />
+        </activity>
+        <activity
+            android:name=".CrearHoraActivity"
+            android:label="@string/title_activity_crear_hora"
+            android:parentActivityName=".InstructorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.InstructorActivity" />
+        </activity>
+        <activity
+            android:name=".CrearIncidenciaActivity"
+            android:label="@string/title_activity_crear_incidencia"
+            android:parentActivityName=".InstructorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.InstructorActivity" />
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="ecu.universidades.leccionario.ActualiazarUsuarioActivity">
+
+    <EditText
+        android:id="@+id/primerNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/prompt_primerNombre"
+        android:maxLines="1"
+        android:ems="10"
+        android:layout_below="@+id/nuevoUsuario"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/prompt_segundoNombre"
+        android:ems="10"
+        android:id="@+id/segundoNombre"
+        android:layout_below="@+id/primerNombre"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/prompt_primerApellido"
+        android:ems="10"
+        android:id="@+id/primerApellido"
+        android:layout_below="@+id/segundoNombre"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/prompt_segundoApellido"
+        android:ems="10"
+        android:id="@+id/segundoApellido"
+        android:layout_below="@+id/primerApellido"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nuevoUsuario"
+        android:hint="@string/prompt_nuevoUsuario"
+        android:layout_below="@+id/spinner2"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/clave"
+        android:hint="@string/prompt_clave"
+        android:layout_below="@+id/segundoApellido"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/claveConfirmar"
+        android:hint="@string/prompt_confirmarClave"
+        android:layout_below="@+id/clave"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grabar"
+        android:id="@+id/btnGrabar"
+        android:layout_below="@+id/claveConfirmar"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seleccione usuario"
+        android:id="@+id/seleccionUsusrio"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText7"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/nuevoUsuario" />
+
+</RelativeLayout>

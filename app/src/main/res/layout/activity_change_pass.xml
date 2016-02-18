@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="ecu.universidades.leccionario.ChangePassActivity">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/oldPass"
+        android:hint="@string/prompt_clave_actual"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newPass"
+        android:hint="@string/prompt_clave_nueva"
+        android:layout_below="@+id/oldPass"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newConfirmPass"
+        android:hint="@string/prompt_confirmarClave"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/newPass"
+        android:layout_alignParentLeft="true"
+        android:layout_alignEnd="@+id/newPass" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grabar"
+        android:id="@+id/btnGrabar"
+        android:layout_below="@+id/newConfirmPass"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="47dp" />
+</RelativeLayout>

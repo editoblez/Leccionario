@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:contex=".InstructorActivity">
+    <item android:id="@+id/action_create_user"
+        android:title="@string/action_create_user"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_update_user"
+        android:title="@string/action_update_user"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_create_asignatura"
+        android:title="@string/action_create_asignatura"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_update_asignatura"
+        android:title="@string/action_update_asignatura"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_create_topic"
+        android:title="@string/action_create_topic"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_update_topic"
+        android:title="@string/action_update_topic"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_create_grupo"
+        android:title="@string/action_create_grupo"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_update_grupo"
+        android:title="@string/action_update_grupo"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_create_leccionario"
+        android:title="@string/action_crear_leccionario"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_update_lecc"
+        android:title="@string/action_update_lecc"
+        app:showAsAction="never"/>
+</menu>
