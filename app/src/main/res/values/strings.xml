@@ -87,11 +87,17 @@
 
     <!-- Strings related to crear incidencia-->
     <string name="prompt_nombreIncidencia">Descripción</string>
+    <string name="action_crear_incidencia">Crear Incidencia </string>
+    <string name="action_update_incidencia">Actualizar Incidencia </string>
+
 
     <!-- Strings related to crear horaa-->
     <string name="prompt_idHora">ID Hora</string>
     <string name="prompt_horaInicio">Hora Inicio</string>
     <string name="prompt_horaFin">Hora Fin</string>
+    <string name="action_crear_hora">Crear Hora</string>
+    <string name="action_update_hora">Actualizar Hora</string>
+
 
     <!-- Strings related to cambiar clave-->
     <string name="prompt_clave_actual">CLave Actual</string>
@@ -110,6 +116,8 @@
     <string name="success_msg">Operación exitosa</string>
     <string name="title_activity_crear_hora">crearHoraActivity</string>
     <string name="title_activity_crear_incidencia">crearIncidenciaActivity</string>
+    <string name="title_activity_actualizar_hora">ActualizarHoraActivity</string>
+    <string name="title_activity_actualizar_incidencia">ActualizarIncidenciaActivity</string>
 
 
 </resources>

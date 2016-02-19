@@ -76,6 +76,25 @@ public class InstructorActivity extends ActionBarActivity {
                 intent = new Intent(getApplicationContext(), ActualizarTemaActivity.class);
                 startActivity(intent);
                 return true;
+
+            case R.id.action_create_hora:
+                intent = new Intent(getApplicationContext(),CrearHoraActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_update_hora:
+                intent = new Intent(getApplicationContext(),ActualizarHoraActivity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.action_create_insidencia:
+                intent = new Intent(getApplicationContext(),CrearIncidenciaActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_update_incidencia:
+                intent = new Intent(getApplicationContext(),ActualizarIncidenciaActivity.class);
+                startActivity(intent);
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
