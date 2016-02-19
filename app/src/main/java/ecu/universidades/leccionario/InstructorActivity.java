@@ -86,7 +86,7 @@ public class InstructorActivity extends ActionBarActivity {
                 startActivity(intent);
                 return true;
 
-            case R.id.action_create_insidencia:
+            case R.id.action_create_incidencia:
                 intent = new Intent(getApplicationContext(),CrearIncidenciaActivity.class);
                 startActivity(intent);
                 return true;
