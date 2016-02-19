@@ -34,7 +34,7 @@
         android:title="@string/action_update_lecc"
         app:showAsAction="never"/>
 
-    <item android:id="@+id/action_create_insidencia"
+    <item android:id="@+id/action_create_incidencia"
         android:title="@string/action_crear_incidencia"
         app:showAsAction="never"/>
     <item android:id="@+id/action_update_incidencia"
