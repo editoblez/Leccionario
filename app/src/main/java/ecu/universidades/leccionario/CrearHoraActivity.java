@@ -98,7 +98,7 @@ public class CrearHoraActivity extends ActionBarActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             //showProgress(true);
-            String url = getString(R.string.base_url) + "hora/creates";
+            String url = getString(R.string.base_url) + "hora/create";
             JSONObject params = new JSONObject();
             try {
                 params.put("idHora", Integer.parseInt(idHora));
