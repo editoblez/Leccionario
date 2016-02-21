@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Aceptar"
-        android:id="@+id/aceptar"
+        android:id="@+id/btnOKView"
         android:layout_below="@+id/spinner4"
         android:layout_alignStart="@+id/textView" />
 
@@ -44,7 +44,7 @@
         android:text="Cancelar"
         android:id="@+id/cancelar"
         android:layout_below="@+id/spinner4"
-        android:layout_toEndOf="@+id/aceptar" />
+        android:layout_toEndOf="@+id/btnOKView" />
 
     <EditText
         android:layout_width="wrap_content"

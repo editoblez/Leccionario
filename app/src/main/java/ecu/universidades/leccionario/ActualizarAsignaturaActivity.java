@@ -1,12 +1,10 @@
 package ecu.universidades.leccionario;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,18 +14,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -58,7 +48,7 @@ public class ActualizarAsignaturaActivity extends ActionBarActivity implements A
         spListMateriaView = (Spinner) findViewById(R.id.spMateriaView);
         spListMateriaView.setOnItemSelectedListener(this);
         chBoxActivoView = (CheckBox) findViewById(R.id.chBoxActivoView);
-        btnOKView = (Button) findViewById(R.id.aceptar);
+        btnOKView = (Button) findViewById(R.id.btnOKView);
         btnOKView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
