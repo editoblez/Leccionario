@@ -93,8 +93,8 @@
 
     <!-- Strings related to crear horaa-->
     <string name="prompt_idHora">ID Hora</string>
-    <string name="prompt_horaInicio">Hora Inicio</string>
-    <string name="prompt_horaFin">Hora Fin</string>
+    <string name="prompt_horaInicio">Hora Inicio HH:MM</string>
+    <string name="prompt_horaFin">Hora Fin HH:MM</string>
     <string name="action_crear_hora">Crear Hora</string>
     <string name="action_update_hora">Actualizar Hora</string>
 
@@ -111,6 +111,7 @@
     <string name="error_waiting_response">Error esperando la respuesta</string>
     <string name="error_http_response">Error HTTP</string>
     <string name="error_json">Error en el manejo de datos</string>
+    <string name="error_SQL">Error realizando la consulta a la Base de Datos</string>
 
 
     <string name="success_msg">Operación exitosa</string>
