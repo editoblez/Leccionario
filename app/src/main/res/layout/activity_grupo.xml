@@ -12,7 +12,7 @@
 
 
     <EditText
-        android:id="@+id/nombreGrupo"
+        android:id="@+id/txtCursoNombreView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/prompt_nombreGrupo"
@@ -26,17 +26,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Aceptar"
-        android:id="@+id/btnSaveCurso"
-        android:layout_below="@+id/semestre"
+        android:id="@+id/btnCursoOKView"
+        android:layout_below="@+id/txtCursoSemestreView"
         android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/prompt_semestre"
-        android:id="@+id/semestre"
-        android:layout_below="@+id/nombreGrupo"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/txtCursoSemestreView"
+        android:layout_below="@+id/txtCursoNombreView"
+        android:layout_alignParentStart="true"
+        android:inputType="number"/>
 
 
 </RelativeLayout>
