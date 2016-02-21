@@ -15,27 +15,28 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spListSemestreView"
+        android:id="@+id/spCursoSemestreView"
         android:layout_below="@+id/idSemestre"
         android:layout_alignParentEnd="true" />
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tSemestre"
-        android:hint="@string/prompt_semestre"/>
-
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spListGrupoView"
+        android:id="@+id/spCursoNombreView"
         android:layout_below="@+id/idSeleccionGrupo"
         android:layout_alignParentStart="true" />
 
 
     <EditText
-        android:id="@+id/tNombregrupo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtCursoSemestreView"
+        android:hint="@string/prompt_semestre"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/txtCursoNombreView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/prompt_nombreGrupo"
@@ -50,17 +51,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Activo"
-        android:id="@+id/chBoxActivoView"
+        android:id="@+id/chCursoActivoView"
         android:layout_below="@+id/crearMateria"
         android:layout_alignParentStart="true"
         android:checked="false"
-        android:layout_alignEnd="@+id/btnOKGrupo" />
+        android:layout_alignEnd="@+id/btnCursoOKView" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Aceptar"
-        android:id="@+id/btnOKGrupo"
+        android:id="@+id/btnCursoOKView"
         android:layout_below="@+id/spSemestre"
         android:layout_toEndOf="@+id/idSemestre" />
 
