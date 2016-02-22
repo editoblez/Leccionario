@@ -28,7 +28,7 @@ public class CrearIncidenciaActivity extends ActionBarActivity {
     Button btnSaveView;
     private createIncidenciaTask cIncidenciasTask = null;
     private EditText descripcionView;
-    private GoogleApiClient client;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +103,7 @@ public class CrearIncidenciaActivity extends ActionBarActivity {
             try {
                 jsonObject.put("idIncidencia", 0);
                 jsonObject.put("descripcion", descripcion);
-                jsonObject.put("activo", true);
+                jsonObject.put("activa", true);
             } catch (Exception e) {
                 errorFlag = true;
                 error_msg = getString(R.string.error_unable_set_connection);
