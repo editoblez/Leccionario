@@ -12,6 +12,7 @@
     <string name="error_invalid_password">This password is too short</string>-->
     <string name="error_incorrect_password">Usuario o clave incorrecta</string>
     <string name="error_field_required">Campo requirido</string>
+    <string name="error_mismatch_password">Las claves no coinciden</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
@@ -25,6 +26,7 @@
     <string name="title_activity_crear_usuario">CrearUsuarioActivity</string>
     <string name="action_create_user"> Crear Usuario</string>
     <string name="action_update_user"> Actualizar Usuario</string>
+    <string name="prompt_cedula">Cédula</string>
     <string name="prompt_primerNombre">Primer Nombre</string>
     <string name="prompt_segundoNombre">Segundo Nombre</string>
     <string name="prompt_primerApellido">Primer Apellido</string>
@@ -60,9 +62,12 @@
     <string name="prompt_fecha">Fecha</string>
     <string name="prompt_hora">Hora</string>
     <string name="prompt_nombreProfesor">Nombre del Profesor</string>
-    <string name="prompt_anoLectivo">Año Lectivo</string>
+    <string name="prompt_anoLectivoInicio">Año Lectivo Inicio</string>
+    <string name="prompt_anoLectivoFin">Año Lectivo Fin</string>s
     <string name="prompt_tema">Tema</string>
+    <string name="prompt_fechaLeccionario" > Fecha leccionrio</string>
     <string name="prompt_control">Control del Leccionario</string>
+    <string name="prompt_idInstructor">Id instructor</string>
 
     <!-- Strings related to turno del profesor-->
     <string name="title_activity_act_profesor">ActProfesorActivity</string>
@@ -74,6 +79,15 @@
     <string name="title_activity_actualizar_asignatura">ActualizarAsignaturaActivity</string>
     <string name="title_activity_actualizar_grupo">ActualizarGrupoActivity</string>
     <string name="title_activity_actualizar_leccionario">ActualizarLeccionarioActivity</string>
+
+    <!--Menu Items-->
+    <string name="item_create_profesor">Crear Profesor</string>
+    <string name="item_create_instructor">Crear Instructor</string>
+    <string name="item_create_student">Crear Estudiante</string>
+    <string name="item_update_profesor">Actualizar Profesor</string>
+    <string name="item_update_instuctor">Actualizar Instructor</string>
+    <string name="item_update_student">Actualizar Estudiante</string>
+
 
     <!-- Strings related to turno del tema-->
 
@@ -119,6 +133,14 @@
     <string name="title_activity_crear_incidencia">crearIncidenciaActivity</string>
     <string name="title_activity_actualizar_hora">ActualizarHoraActivity</string>
     <string name="title_activity_actualizar_incidencia">ActualizarIncidenciaActivity</string>
+    <string name="title_activity_persona">PersonaActivity</string>
 
+
+    <string-array name="personaType">
+        <item>Seleccione</item>
+        <item>Instructor</item>
+        <item>Profesor</item>
+    </string-array>
 
 </resources>
+
