@@ -1,6 +1,8 @@
 package ecu.universidades.leccionario;
 
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,5 +26,12 @@ public class JsonUtils {
             }
         }
         return jsonObject;
+    }
+
+
+    public static void makeMessage (ActionBarActivity context, String msg)
+    {
+        Toast toast = Toast.makeText(context.getApplicationContext(), msg, Toast.LENGTH_LONG);
+        toast.show();
     }
 }

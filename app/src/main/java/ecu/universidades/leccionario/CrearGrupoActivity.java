@@ -1,21 +1,17 @@
 package ecu.universidades.leccionario;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.apache.http.HttpEntity;
@@ -25,17 +21,19 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 public class CrearGrupoActivity extends ActionBarActivity {
 
 
-    Button btnSaveView;
-    private createGrupoTask cGrupoTask = null;
-    private EditText nombreGrupoView;
-    private EditText nombreSemestreView;
+    Button btnCursoOKView;
+    ServiceClass  serviceClass = null;
+    private EditText txtCursoNombreView;
+    private EditText txtCursoSemestreView;
 
 
     /**
@@ -52,44 +50,44 @@ public class CrearGrupoActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        btnSaveView = (Button) findViewById(R.id.btnSaveCurso);
-        btnSaveView.setOnClickListener(new View.OnClickListener() {
+        btnCursoOKView = (Button) findViewById(R.id.btnCursoOKView);
+        btnCursoOKView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 save();
             }
         });
 
-        nombreGrupoView = (EditText) findViewById(R.id.nombreGrupo);
+        txtCursoNombreView = (EditText) findViewById(R.id.txtCursoNombreView);
 
-        nombreGrupoView.setError(null);
+        txtCursoNombreView.setError(null);
 
-        nombreSemestreView = (EditText) findViewById(R.id.semestre);
+        txtCursoSemestreView = (EditText) findViewById(R.id.txtCursoSemestreView);
 
-        nombreSemestreView.setError(null);
+        txtCursoSemestreView.setError(null);
 
     }
 
     private void save() {
-        if (cGrupoTask != null) {
+        if (serviceClass != null) {
             return;
         }
-        nombreGrupoView.setError(null);
-        String nombreGrupo = nombreGrupoView.getText().toString();
+        txtCursoNombreView.setError(null);
+        String nombreGrupo = txtCursoNombreView.getText().toString();
 
-        nombreSemestreView.setError(null);
-        String nombreSemestre = nombreSemestreView.getText().toString();
+        txtCursoSemestreView.setError(null);
+        String nombreSemestre = txtCursoSemestreView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
         if (TextUtils.isEmpty(nombreGrupo)) {
-            nombreGrupoView.setError(getString(R.string.error_field_required));
-            focusView = nombreGrupoView;
+            txtCursoNombreView.setError(getString(R.string.error_field_required));
+            focusView = txtCursoNombreView;
             cancel = true;
         } else if (TextUtils.isEmpty(nombreSemestre)) {
-            nombreSemestreView.setError(getString(R.string.error_field_required));
-            focusView = nombreSemestreView;
+            txtCursoSemestreView.setError(getString(R.string.error_field_required));
+            focusView = txtCursoSemestreView;
             cancel = true;
         }
         if (cancel) {
@@ -100,106 +98,38 @@ public class CrearGrupoActivity extends ActionBarActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             //showProgress(true);
-            cGrupoTask = new createGrupoTask(nombreGrupo, nombreSemestre);
-            cGrupoTask.execute((Void) null);
-        }
-
-    }
-
-    public class createGrupoTask extends AsyncTask<Void, Void, Boolean> {
-        private final String nombreGrupo;
-        private final String nombreSemestre;
-        private boolean errorFlag = false;
-        private String error_msg = "";
-        HttpEntity entityResponse;
-        JSONObject jsonResult;
-
-        createGrupoTask(String nombreG, String semestre) {
-            nombreGrupo = nombreG;
-            nombreSemestre = semestre;
-        }
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            HttpClient httpClient = new DefaultHttpClient();
-            //Create url for request
             String url = getString(R.string.base_url) + "curso";
-            HttpPost httpPost = new HttpPost(url);
-            //Set type of request
-            httpPost.setHeader("Content-type", "application/json");
-            //Prepare a jsonObject for request
-            JSONObject jsonObject = new JSONObject();
-
-            try
-            {
-                jsonObject.put("idCurso", 0);
-                jsonObject.put("semestre",nombreSemestre);
-                jsonObject.put("nombreCurso", nombreGrupo);
-                jsonObject.put("activo", true);
+            JSONObject params = new JSONObject();
+            try {
+                params.put("idCurso", 0);
+                params.put("nombreCurso", nombreGrupo);
+                params.put("semestre", Integer.parseInt(nombreSemestre));
+                params.put("activo", true);
+            } catch (JSONException e) {
+                Log.e("JSONException ", e.getMessage());
             }
-            catch (Exception e)
-            {
-                errorFlag = true;
-                error_msg = getString(R.string.error_unable_set_connection);
-            }
-            //Make a connection
-            if (!errorFlag)
-            {
-                try
-                {
-                    StringEntity se = new StringEntity(jsonObject.toString());
-                    httpPost.setEntity(se);
-                    HttpResponse response = httpClient.execute(httpPost);
-                    if (response.getStatusLine().getStatusCode() != 200
-                            && response.getStatusLine().getStatusCode() != 204) //!OK
-                    {
-                        errorFlag = true;
-                        error_msg = getString(R.string.error_http_response);
-                    }
+            serviceClass = new ServiceClass(this, url,
+                    HttpRequestType.POST, HttpResponseType.NONE, params);
+            JSONObject result = null;
+            try {
+                result = serviceClass.execute().get();
+                if (result.isNull("error")){
+                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.success_msg), Toast.LENGTH_SHORT);
+                    toast.show();
                 }
-                catch (ClientProtocolException e)
-                {
-                    errorFlag = true;
-                    error_msg = getString(R.string.error_protocol_connection);
-                } catch (IOException e) {
-                    errorFlag = true;
-                    error_msg = getString(R.string.error_waiting_response);
+                else{
+                    txtCursoSemestreView.setError(result.getString("error"));
+                    txtCursoSemestreView.requestFocus();
                 }
+            } catch (InterruptedException e) {
+                Log.e("InterruptedException", e.getMessage());
+            } catch (ExecutionException e) {
+                Log.e("ExecutionException", e.getMessage());
+            } catch (JSONException e) {
+                Log.e("JSONException", e.getMessage());
             }
-            return !errorFlag;
-        }
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            cGrupoTask = null;
-            //showProgress(false);
-            if (!success) {
-                nombreGrupoView.setError(error_msg);
-                nombreGrupoView.requestFocus();
-                nombreSemestreView.setError(error_msg);
-                nombreSemestreView.requestFocus();
-
-            }
-            else{
-                Context context = getApplicationContext();
-                CharSequence text = getString(R.string.success_msg);
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.setGravity(Gravity.TOP| Gravity.RIGHT, 0, 0);
-                toast.show();
-            }
-            nombreGrupoView.setText(null);
-            nombreSemestreView.setText(null);
-            errorFlag = false;
-            error_msg = "";
-        }
-
-        @Override
-        protected void onCancelled() {
-            /*mAuthTask = null;
-            showProgress(false);*/
         }
     }
-
 }
 
 

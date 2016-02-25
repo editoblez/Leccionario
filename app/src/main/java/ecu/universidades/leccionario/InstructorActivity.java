@@ -37,10 +37,20 @@ public class InstructorActivity extends ActionBarActivity {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.action_create_user:
-                intent = new Intent(getApplicationContext(), CrearUsuarioActivity.class);
+                intent = new Intent(getApplicationContext(), PersonaActivity.class);
+                intent.putExtra("type", PersonaType.USUARIO);
                 startActivity(intent);
                 return true;
             case R.id.action_update_user:
+                intent = new Intent(getApplicationContext(), ActualiazarUsuarioActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_create_student:
+                intent = new Intent(getApplicationContext(), PersonaActivity.class);
+                intent.putExtra("type", PersonaType.ESTUDIANTE);
+                startActivity(intent);
+                return true;
+            case R.id.action_update_student:
                 intent = new Intent(getApplicationContext(), ActualiazarUsuarioActivity.class);
                 startActivity(intent);
                 return true;

@@ -9,6 +9,17 @@
     <item android:id="@+id/action_update_user"
         android:title="@string/action_update_user"
         app:showAsAction="never"/>
+
+    <item android:id="@+id/action_create_student"
+        android:title="@string/item_create_student"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_update_student"
+        android:title="@string/item_update_student"
+        app:showAsAction="never"/>
+
+
+
+
     <item android:id="@+id/action_create_asignatura"
         android:title="@string/action_create_asignatura"
         app:showAsAction="never"/>

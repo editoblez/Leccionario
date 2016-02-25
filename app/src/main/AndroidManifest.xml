@@ -191,6 +191,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ecu.universidades.leccionario.InstructorActivity" />
         </activity>
+        <activity
+            android:name=".PersonaActivity"
+            android:label="@string/title_activity_persona"
+            android:parentActivityName=".InstructorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ecu.universidades.leccionario.InstructorActivity" />
+        </activity>
     </application>
 
 </manifest>
