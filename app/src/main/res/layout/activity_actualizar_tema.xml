@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Aceptar"
-        android:id="@+id/btnOKView"
+        android:id="@+id/btnSaveTurnoOKView"
         android:layout_below="@+id/txtTemaView" />
 
 

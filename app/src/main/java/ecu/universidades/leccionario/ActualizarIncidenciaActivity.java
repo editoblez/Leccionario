@@ -46,7 +46,7 @@ public class ActualizarIncidenciaActivity extends ActionBarActivity implements A
         spListIncidenciaView.setOnItemSelectedListener(this);
 
         chBoxActivoView = (CheckBox) findViewById(R.id.chBoxActivoView);
-        btnOKView = (Button) findViewById(R.id.btnOKView);
+        btnOKView = (Button) findViewById(R.id.btnSaveTurnoOKView);
         btnOKView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

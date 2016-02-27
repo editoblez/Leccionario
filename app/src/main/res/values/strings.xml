@@ -65,7 +65,7 @@
     <string name="prompt_anoLectivoInicio">Año Lectivo Inicio</string>
     <string name="prompt_anoLectivoFin">Año Lectivo Fin</string>s
     <string name="prompt_tema">Tema</string>
-    <string name="prompt_fechaLeccionario" > Fecha leccionrio</string>
+    <string name="prompt_fechaLeccionario"> Fecha leccionrio</string>
     <string name="prompt_control">Control del Leccionario</string>
     <string name="prompt_idInstructor">Id instructor</string>
 
@@ -141,6 +141,7 @@
         <item>Instructor</item>
         <item>Profesor</item>
     </string-array>
+    <string name="title_activity_actualizar_persona">ActualizarPersonaActivity</string>
 
 </resources>
 

@@ -95,7 +95,7 @@ public class ServiceClass extends AsyncTask<Void, Void, JSONObject> {
                         && statusCode != 204) //!OK
                 {
                     errorFlag = true;
-                    error_msg = activity.getString(R.string.error_http_response);
+                    error_msg = activity.getString(R.string.error_SQL);
                 }
             } catch (ClientProtocolException e) {
                 errorFlag = true;
@@ -111,15 +111,15 @@ public class ServiceClass extends AsyncTask<Void, Void, JSONObject> {
                 switch (this.httpResponseType)
                 {
                     case JSONARRAYOBJECT:
-                        responseJsonObject.put("result",
+                        responseJsonObject.put("result", errorFlag ? "[]" :
                                 new JSONArray(EntityUtils.toString(responseHttp.getEntity())));
                         break;
                     case JSONOBJECT:
-                        responseJsonObject.put("result",
+                        responseJsonObject.put("result", errorFlag ? "" :
                                 new JSONObject(EntityUtils.toString(responseHttp.getEntity())));
                         break;
                     default:
-                        responseJsonObject.put("result",
+                        responseJsonObject.put("result", errorFlag ? "[]" :
                                 new JSONObject());
                 }
             }

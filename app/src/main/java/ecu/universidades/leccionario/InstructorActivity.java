@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class InstructorActivity extends ActionBarActivity {
-
+    static int idInstructor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +19,11 @@ public class InstructorActivity extends ActionBarActivity {
 
         Intent intent = getIntent();
         EditText edit = (EditText) findViewById(R.id.test);
-        edit.setText(intent.getStringExtra("Message"));
+        try {
+            idInstructor = Integer.parseInt(intent.getStringExtra("Message"));
+        }
+        catch (Exception e){}
+        edit.setText(String.valueOf(idInstructor));
 
     }
 
@@ -42,7 +46,8 @@ public class InstructorActivity extends ActionBarActivity {
                 startActivity(intent);
                 return true;
             case R.id.action_update_user:
-                intent = new Intent(getApplicationContext(), ActualiazarUsuarioActivity.class);
+                intent = new Intent(getApplicationContext(), ActualizarPersonaActivity.class);
+                intent.putExtra("type", PersonaType.USUARIO);
                 startActivity(intent);
                 return true;
             case R.id.action_create_student:
@@ -51,7 +56,8 @@ public class InstructorActivity extends ActionBarActivity {
                 startActivity(intent);
                 return true;
             case R.id.action_update_student:
-                intent = new Intent(getApplicationContext(), ActualiazarUsuarioActivity.class);
+                intent = new Intent(getApplicationContext(), ActualizarPersonaActivity.class);
+                intent.putExtra("type", PersonaType.ESTUDIANTE);
                 startActivity(intent);
                 return true;
             case R.id.action_create_asignatura:
@@ -72,10 +78,12 @@ public class InstructorActivity extends ActionBarActivity {
                 return true;
             case R.id.action_create_leccionario:
                 intent = new Intent(getApplicationContext(), CrearLeccionarioActivity.class);
+                intent.putExtra("idUsuario", idInstructor);
                 startActivity(intent);
                 return true;
             case R.id.action_update_lecc:
                 intent = new Intent(getApplicationContext(), ActualizarLeccionarioActivity.class);
+                intent.putExtra("idUsuario", idInstructor);
                 startActivity(intent);
                 return true;
             case R.id.action_create_topic:
