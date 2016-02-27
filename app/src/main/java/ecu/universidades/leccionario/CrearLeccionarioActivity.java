@@ -148,7 +148,7 @@ public class CrearLeccionarioActivity extends ActionBarActivity implements Adapt
             }
         }
         serviceClass = null;
-        fillGrupo();
+        fillSemestre();
     }
     private void fillSemestre() {
         if (this.serviceClass != null) return;

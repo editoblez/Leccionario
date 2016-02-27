@@ -153,8 +153,8 @@ public class ActualizarPersonaActivity extends ActionBarActivity implements Adap
     private void load() {
         if (this.serviceClass != null) return;
         String url = getString(R.string.base_url);
-        url += personaType == PersonaType.PROFESOR
-                ? "usuario/getAllByCedula/" + txtPersonaCedula.getText()
+        url += personaType == PersonaType.USUARIO
+                ? "usuario/getAllByCedula/"
                 : "estudiante/getAllByCedula/";
         url +=  txtPersonaCedula.getText();
         serviceClass = new ServiceClass(this, url,

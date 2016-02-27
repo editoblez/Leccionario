@@ -250,7 +250,7 @@ public class ActualizarGrupoActivity extends ActionBarActivity implements Adapte
         {
             try {
                 this.txtCursoNombreView.setText(jsonObject.getString("nombreCurso"));
-                this.txtCursoNombreView.setText(jsonObject.getString("semestre"));
+                this.txtCursoSemestreView.setText(jsonObject.getString("semestre"));
                 this.chBoxActivoView.setChecked(jsonObject.getBoolean("activo"));
                 this.idSelectedGrupo = jsonObject.getInt("idCurso");
             } catch (JSONException e) {
