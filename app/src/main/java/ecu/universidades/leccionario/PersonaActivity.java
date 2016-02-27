@@ -142,9 +142,11 @@ public class PersonaActivity extends ActionBarActivity implements AdapterView.On
         txtPersona1erApellido.setError(null);
         txtPersona2doNombre.setError(null);
         txtPersona1erNombre.setError(null);
-        if (TextUtils.isEmpty(txtPersonaCedula.getText())){
+
+        String result;
+        if ((result = JsonUtils.isValidCedula(txtPersonaCedula.getText().toString())) != null){
             cancel = true;
-            txtPersonaCedula.setError(getString(R.string.error_field_required));
+            txtPersonaCedula.setError(result);
             focus = txtPersonaCedula;
         }
         else if (TextUtils.isEmpty(txtPersona1erNombre.getText().toString())){

@@ -1,6 +1,7 @@
 package ecu.universidades.leccionario;
 
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -62,6 +63,27 @@ public class JsonUtils {
         }
             return sb.toString();
 
+
+    }
+
+    public static String isValidCedula (String cedula)
+    {
+        String result = null;
+        if (TextUtils.isEmpty(cedula))
+        {
+            result = "Campo requerido";
+        }
+        else if (!TextUtils.isDigitsOnly(cedula))
+        {
+            result = "Debe contener solo digitos";
+        }
+        else if (cedula.length() != 10)
+        {
+            result = "La longitud de la cedula debe ser 10";
+
+        }
+
+        return result;
 
     }
 }

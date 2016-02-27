@@ -21,10 +21,10 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:ems="10"
             android:hint="@string/prompt_cedula"
-            android:id="@+id/txtPersonaCedula" />
+            android:id="@+id/txtPersonaCedula"
+            android:inputType="number"/>
 
         <EditText
             android:layout_width="match_parent"
