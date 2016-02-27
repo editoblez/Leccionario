@@ -7,17 +7,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ecu.universidades.leccionario.PersonaActivity"
+    tools:context="ecu.universidades.leccionario.ActualizarPersonaActivity"
     android:orientation="vertical"
     android:weightSum="1">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="206dp"
-        android:layout_row="0"
-        android:layout_column="0">
-
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/BuscarLayoutView">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,6 +23,21 @@
             android:ems="10"
             android:hint="@string/prompt_cedula"
             android:id="@+id/txtPersonaCedula" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar"
+            android:id="@+id/btnPersonaFind"
+            android:layout_gravity="center_horizontal" />
+</LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/CommonLayoutView">
+
 
         <EditText
             android:layout_width="match_parent"
@@ -58,23 +71,24 @@
             android:hint="@string/prompt_segundoApellido"
             android:id="@+id/txtPersona2doApellido" />
 
-
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/chPersonaActivo"
+            android:text="Activo"
+            android:checked="false" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_row="1"
-        android:layout_column="0"
-        android:id="@+id/UsuarioLayoutView"
-        android:layout_weight="0.56">
+        android:id="@+id/UsuarioLayoutView">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:ems="10"
             android:hint="@string/prompt_nuevoUsuario"
             android:id="@+id/txtPersonaUsuario" />
 
@@ -82,7 +96,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:ems="10"
             android:hint="@string/prompt_clave"
             android:id="@+id/txtPersonaPassword" />
 
@@ -90,15 +103,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:ems="10"
             android:hint="@string/prompt_confirmarClave"
             android:id="@+id/txtPersonaPasswordConfirm" />
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/spPersonaTipo" />
-
 
     </LinearLayout>
 
@@ -111,25 +117,37 @@
         android:id="@+id/EstudianteLayoutView">
 
         <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/spEstudianteSemestre"
             android:layout_weight="1" />
 
         <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/spEstudianteCurso"
             android:layout_weight="1" />
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Aceptar"
-        android:id="@+id/btnPersonaOK"
-        android:layout_row="7"
-        android:layout_column="0"
-        android:layout_gravity="center_horizontal" />
+        android:orientation="horizontal"
+        android:id="@+id/ButtonLayout">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aceptar"
+            android:id="@+id/btnPersonaOK"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volver"
+            android:id="@+id/btnPersonaBack"/>
+    </LinearLayout>
+
+
 
 </LinearLayout>

@@ -34,7 +34,7 @@ public class CrearAsignaturaActivity extends ActionBarActivity {
         setContentView(R.layout.activity_crear_asignatura);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        btnSaveView = (Button) findViewById(R.id.btnOKView);
+        btnSaveView = (Button) findViewById(R.id.btnSaveTurnoOKView);
         btnSaveView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -16,6 +16,7 @@ public class JsonUtils {
     public static JSONObject getJsonObjectFromJsonArray (JSONArray jsonArray, String name, Object value)
     {
         JSONObject jsonObject = null;
+        if (jsonArray == null) return null;
         for (int i = 0; i < jsonArray.length(); i++)
         {
             try {

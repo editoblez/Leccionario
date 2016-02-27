@@ -51,7 +51,7 @@ public class ActualizarTemaActivity extends ActionBarActivity implements  Adapte
 
         txtTemaView = (EditText) findViewById(R.id.txtTemaView);
         chTemaView = (CheckBox) findViewById(R.id.chTemaView);
-        btnOKView = (Button) findViewById(R.id.btnOKView);
+        btnOKView = (Button) findViewById(R.id.btnSaveTurnoOKView);
         btnOKView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

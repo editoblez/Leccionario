@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,58 +7,47 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="ecu.universidades.leccionario.CrearLeccionarioActivity">
 
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText6"
-        android:ems="10"
-        android:hint="@string/prompt_anoLectivo"
+        android:id="@+id/txtAnolectivoInicioView"
+        android:inputType="number"
+        android:hint="@string/prompt_anoLectivoInicio"
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true" />
 
 
-    <TextView
+
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Control del leccionario"
-        android:id="@+id/textView"
-        android:hint="@string/prompt_control"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/txtAnoElectivoFinView"
+        android:inputType="number"
+        android:hint="@string/prompt_anoLectivoFin"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spListaSemestreView"
+        android:layout_gravity="center_horizontal" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spListaGrupoView"
+        android:layout_below="@+id/curso" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Aceptar"
-        android:id="@+id/btnOKView"
-        android:layout_below="@+id/spinner4"
+        android:id="@+id/btnSaveLeccionariooOKView"
+        android:layout_below="@+id/spListaGrupo"
         android:layout_alignStart="@+id/textView" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancelar"
-        android:id="@+id/cancelar"
-        android:layout_below="@+id/spinner4"
-        android:layout_toEndOf="@+id/btnOKView" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/curso"
-        android:text="Curso"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/editText6" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner4"
-        android:layout_below="@+id/curso" />
-
-
-</RelativeLayout>
+</LinearLayout>

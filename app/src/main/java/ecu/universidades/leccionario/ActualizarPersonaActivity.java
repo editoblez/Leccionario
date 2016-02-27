@@ -1,20 +1,18 @@
 package ecu.universidades.leccionario;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.text.Layout;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,22 +22,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class PersonaActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener{
+
+public class ActualizarPersonaActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener{
 
     LinearLayout EstudianteLayout;
     LinearLayout UsuarioLayout;
+    LinearLayout BuscarLayout;
+    LinearLayout CommonLayout;
+    LinearLayout ButtonLayout;
 
     EditText txtPersonaCedula;
     EditText txtPersona1erNombre;
     EditText txtPersona2doNombre;
     EditText txtPersona1erApellido;
     EditText txtPersona2doApellido;
+    CheckBox chPersonaActivo;
 
     EditText txtPersonaUsuario;
     EditText txtPersonaPassword;
     EditText txtPersonaPasswordConfirm;
-    Spinner spPersonaTipo;
-
     Spinner spEstudianteSemestre;
     Spinner spEstudianteCurso;
 
@@ -47,6 +48,8 @@ public class PersonaActivity extends ActionBarActivity implements AdapterView.On
     ServiceClass serviceClass = null;
 
     Button btnPersonaOK;
+    Button btnPersonaFind;
+    Button btnPersonaBack;
 
     List<String> listAllGrupo;
     List<String> listAllSemestre;
@@ -56,30 +59,160 @@ public class PersonaActivity extends ActionBarActivity implements AdapterView.On
     int idSelectedSemestre = -1;
     int idSelectedGrupo = -1;
 
+    int idPersona = -1;
 
+    PersonaType personaType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_persona);
+        setContentView(R.layout.activity_actualizar_persona);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        btnPersonaFind = (Button) findViewById(R.id.btnPersonaFind);
+        btnPersonaFind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                find();
+
+            }
+        });
+        btnPersonaOK = (Button) findViewById(R.id.btnPersonaOK);
+        btnPersonaOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save();
+            }
+        });
+        btnPersonaBack = (Button) findViewById(R.id.btnPersonaBack);
+        btnPersonaBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                back();
+            }
+        });
+
+        personaType = (PersonaType) getIntent().getExtras().get("type");
         EstudianteLayout = (LinearLayout) findViewById(R.id.EstudianteLayoutView);
         UsuarioLayout = (LinearLayout) findViewById(R.id.UsuarioLayoutView);
+        BuscarLayout = (LinearLayout) findViewById(R.id.BuscarLayoutView);
+        CommonLayout = (LinearLayout) findViewById(R.id.CommonLayoutView);
+        ButtonLayout= (LinearLayout) findViewById(R.id.ButtonLayout);
+
+
+        EstudianteLayout.setVisibility(View.GONE);
+        UsuarioLayout.setVisibility(View.GONE);
+        CommonLayout.setVisibility(View.GONE);
+        ButtonLayout.setVisibility(View.GONE);
+        BuscarLayout.setVisibility(View.VISIBLE);
+
         datosComunPersona();
         Intent intent = getIntent();
-        PersonaType personaType = (PersonaType) intent.getExtras().get("type");
+
+    }
+
+    private void back() {
+        EstudianteLayout.setVisibility(View.GONE);
+        UsuarioLayout.setVisibility(View.GONE);
+        CommonLayout.setVisibility(View.GONE);
+        ButtonLayout.setVisibility(View.GONE);
+        BuscarLayout.setVisibility(View.VISIBLE);
+    }
+
+    private void find() {
+        txtPersonaCedula.setError(null);
+        if (serviceClass != null) return;
+        if (TextUtils.isEmpty(txtPersonaCedula.getText()) )
+        {
+            txtPersonaCedula.setError(getString(R.string.error_field_required));
+            txtPersonaCedula.requestFocus();
+            return;
+        }
+        BuscarLayout.setVisibility(View.GONE);
+        CommonLayout.setVisibility(View.VISIBLE);
+        UsuarioLayout.setVisibility(View.VISIBLE);
+        ButtonLayout.setVisibility(View.VISIBLE);
+
         switch (personaType) {
             case ESTUDIANTE:
                 EstudianteLayout.setVisibility(View.VISIBLE);
                 UsuarioLayout.setVisibility(View.GONE);
                 initEstudiante();
+                //loadEstudiante ();
+                load();
                 break;
             default:
                 EstudianteLayout.setVisibility(View.GONE);
                 UsuarioLayout.setVisibility(View.VISIBLE);
                 initUser();
+                load();
                 break;
         }
+
+    }
+
+    private void load() {
+        if (this.serviceClass != null) return;
+        String url = getString(R.string.base_url);
+        url += personaType == PersonaType.PROFESOR
+                ? "usuario/getAllByCedula/" + txtPersonaCedula.getText()
+                : "estudiante/getAllByCedula/";
+        url +=  txtPersonaCedula.getText();
+        serviceClass = new ServiceClass(this, url,
+                HttpRequestType.GET, HttpResponseType.JSONOBJECT);
+        JSONObject response;
+        try {
+            response = serviceClass.execute().get();
+            if (response.isNull("error")) {
+                response = response.getJSONObject("result");
+                txtPersonaCedula.setText(response.getString("cedula"));
+                txtPersona1erNombre.setText(response.getString("primerNombre"));
+                txtPersona2doNombre.setText(response.getString("segundoNombre"));
+                txtPersona1erApellido.setText(response.getString("primerApellido"));
+                txtPersona2doApellido.setText(response.getString("segundoApellido"));
+                chPersonaActivo.setChecked(response.getBoolean("activo"));
+                if (personaType == PersonaType.USUARIO)
+                {
+                    idPersona = response.getInt("idUsuario");
+                    txtPersonaUsuario.setText(response.getString("nombreUsuario"));
+                }
+                else
+                {
+                    idPersona = response.getInt("idEstudiante");
+                    String semestre = String.valueOf(response.getInt("semestre"));
+                    String idCurso = String.valueOf(response.getInt("idCurso"));
+                    String nombreCurso = String.valueOf(response.getString("nombreCurso"));
+                    for (int i = 0; i < spEstudianteSemestre.getCount(); i++)
+                    {
+                        if (spEstudianteSemestre.getAdapter().getItem(i).equals(semestre))
+                        {
+                            spEstudianteSemestre.setSelection(i);
+                        }
+                    }
+
+                    for (int i = 0; i < spEstudianteCurso.getCount(); i++)
+                    {
+                        if (spEstudianteCurso.getAdapter().getItem(i).equals(semestre))
+                        {
+                            spEstudianteCurso.setSelection(i);
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+                JsonUtils.makeMessage(this, response.getString("error"));
+                back();
+            }
+        } catch (InterruptedException e) {
+            JsonUtils.makeMessage(this, e.getMessage());
+        } catch (ExecutionException e) {
+            JsonUtils.makeMessage(this, e.getMessage());
+        } catch (JSONException e) {
+            JsonUtils.makeMessage(this, e.getMessage());
+        }
+
+        this.serviceClass = null;
     }
 
     private void initEstudiante() {
@@ -93,7 +226,6 @@ public class PersonaActivity extends ActionBarActivity implements AdapterView.On
     }
 
     private void initUser() {
-        fillPersonaType();
         this.isUser = true;
         txtPersonaUsuario = (EditText) findViewById(R.id.txtPersonaUsuario);
         txtPersonaUsuario.setError(null);
@@ -122,13 +254,9 @@ public class PersonaActivity extends ActionBarActivity implements AdapterView.On
         txtPersona2doApellido = (EditText) findViewById(R.id.txtPersona2doApellido);
         txtPersona2doApellido.setError(null);
 
-        btnPersonaOK = (Button) findViewById(R.id.btnPersonaOK);
-        btnPersonaOK.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                save();
-            }
-        });
+        chPersonaActivo = (CheckBox) findViewById(R.id.chPersonaActivo);
+
+
     }
 
     private void save() {
@@ -194,14 +322,13 @@ public class PersonaActivity extends ActionBarActivity implements AdapterView.On
                 txtPersonaPasswordConfirm.setError(getString(R.string.error_mismatch_password));
 
             }
-            else if (!((spPersonaTipo.getSelectedItem().toString().equals("Instructor")
-            || (spPersonaTipo.getSelectedItem().toString().equals("Profesor")))))
+            else if (idPersona == -1)
             {
                 cancel = true;
-                focus = spPersonaTipo;
-                msg = getString(R.string.error_field_required);
-                msg_toast = true;
+                focus = txtPersonaCedula;
+                txtPersonaCedula.setError(getString(R.string.error_field_required));
             }
+
         }
         else
         {
@@ -228,32 +355,24 @@ public class PersonaActivity extends ActionBarActivity implements AdapterView.On
             //All is fine
             JSONObject jsonObject=new JSONObject();
             String url = getString(R.string.base_url);
-
             try {
-                jsonObject.put("idPersona",0);
+                jsonObject.put("idPersona", idPersona);
                 jsonObject.put("cedula",txtPersonaCedula.getText().toString());
                 jsonObject.put("primerNombre",txtPersona1erNombre.getText().toString());
                 jsonObject.put("segundoNombre",txtPersona2doNombre.getText().toString());
                 jsonObject.put("primerApellido",txtPersona1erApellido.getText().toString());
                 jsonObject.put("segundoApellido",txtPersona2doApellido.getText().toString());
-                jsonObject.put("activo",true);
+                jsonObject.put("activo", chPersonaActivo.isChecked());
                 if (isUser)
                 {
                     jsonObject.put("nombreUsuario",txtPersonaUsuario.getText().toString());
                     jsonObject.put("claveUsuario",txtPersonaPassword.getText().toString());
-                    if (spPersonaTipo.getSelectedItem().toString().equals("Instructor"))
-                    {
-                        url += "instructor/create";
-                    }
-                    else
-                    {
-                        url += "profesor/create";
-                    }
+                    url += "usuario/update";
                 }
                 else
                 {
                     jsonObject.put("idCurso",this.idSelectedGrupo);
-                    url += "estudiante/create";
+                    url += "estudiante/update";
                 }
                 serviceClass = new ServiceClass(this, url, HttpRequestType.POST,
                         HttpResponseType.NONE, jsonObject);
@@ -266,8 +385,8 @@ public class PersonaActivity extends ActionBarActivity implements AdapterView.On
                     JsonUtils.makeMessage(this, response.getString("error"));
                 }
             } catch (JSONException e) {
-                    JsonUtils.makeMessage(this, e.getMessage());
-                } catch (InterruptedException e) {
+                JsonUtils.makeMessage(this, e.getMessage());
+            } catch (InterruptedException e) {
                 JsonUtils.makeMessage(this, e.getMessage());
             } catch (ExecutionException e) {
                 JsonUtils.makeMessage(this, e.getMessage());
@@ -276,17 +395,6 @@ public class PersonaActivity extends ActionBarActivity implements AdapterView.On
         serviceClass = null;
     }
 
-
-    private void fillPersonaType() {
-        spPersonaTipo = (Spinner) findViewById(R.id.spPersonaTipo);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.personaType, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spPersonaTipo.setAdapter(adapter);
-    }
 
     private void fillSemestre() {
         if (this.serviceClass != null) return;
@@ -417,5 +525,6 @@ public class PersonaActivity extends ActionBarActivity implements AdapterView.On
     public void onNothingSelected(AdapterView<?> parent) {
         Log.e("MSG", "UMMM");
     }
-}
 
+
+}

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 public class ProfesorActivity extends ActionBarActivity {
 
+    static int idUsuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +20,15 @@ public class ProfesorActivity extends ActionBarActivity {
 
         Intent intent = getIntent();
         EditText edit = (EditText) findViewById(R.id.test);
-        edit.setText(intent.getStringExtra("Message"));
+
+        try
+        {
+            idUsuario = Integer.parseInt(intent.getStringExtra("Message"));
+        }
+        catch (Exception e){}
+
+        edit.setText(String.valueOf(idUsuario));
+
     }
 
     @Override
@@ -35,14 +44,17 @@ public class ProfesorActivity extends ActionBarActivity {
         switch (item.getItemId()) {
             case R.id.action_asistencia:
                 intent = new Intent(getApplicationContext(), IngresarTurnoActivity.class);
+                intent.putExtra("idUsuario", idUsuario);
                 startActivity(intent);
                 return true;
             case R.id.action_change_pass:
                 intent = new Intent(getApplicationContext(), ChangePassActivity.class);
+                intent.putExtra("idUsuario", idUsuario);
                 startActivity(intent);
                 return true;
             case R.id.action_register_extra_info:
                 intent = new Intent(getApplicationContext(), RegistrarObservacionActivity.class);
+                intent.putExtra("idUsuario", idUsuario);
                 startActivity(intent);
                 return true;
             default:
