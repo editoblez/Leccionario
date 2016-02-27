@@ -8,6 +8,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * Created by EASYSOFT on 20/2/2016.
  */
@@ -34,5 +38,30 @@ public class JsonUtils {
     {
         Toast toast = Toast.makeText(context.getApplicationContext(), msg, Toast.LENGTH_LONG);
         toast.show();
+    }
+
+    public static String makeMD5 (String text)
+    {
+        StringBuffer sb = null;
+        try {
+            MessageDigest digester = null;
+            digester = MessageDigest.getInstance("MD5");
+            byte[] bytes = text.getBytes("UTF-8");
+
+            byte[] thedigest = digester.digest(bytes);
+
+            //convert the byte to hex format method 1
+            sb = new StringBuffer();
+            for (int i = 0; i < thedigest.length; i++) {
+                sb.append(Integer.toString((thedigest[i] & 0xff) + 0x100, 16).substring(1));
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+            return sb.toString();
+
+
     }
 }

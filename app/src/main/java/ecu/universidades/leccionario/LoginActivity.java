@@ -205,7 +205,7 @@ public class LoginActivity extends ActionBarActivity {
             try
             {
                 jsonObject.put("username", mUser);
-                jsonObject.put("password", mPassword);
+                jsonObject.put("password", JsonUtils.makeMD5(mPassword));
             }
             catch (Exception e)
             {

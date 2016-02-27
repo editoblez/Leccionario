@@ -240,7 +240,7 @@ public class PersonaActivity extends ActionBarActivity implements AdapterView.On
                 if (isUser)
                 {
                     jsonObject.put("nombreUsuario",txtPersonaUsuario.getText().toString());
-                    jsonObject.put("claveUsuario",txtPersonaPassword.getText().toString());
+                    jsonObject.put("claveUsuario",JsonUtils.makeMD5(txtPersonaPassword.getText().toString()));
                     if (spPersonaTipo.getSelectedItem().toString().equals("Instructor"))
                     {
                         url += "instructor/create";

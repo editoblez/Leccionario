@@ -366,7 +366,7 @@ public class ActualizarPersonaActivity extends ActionBarActivity implements Adap
                 if (isUser)
                 {
                     jsonObject.put("nombreUsuario",txtPersonaUsuario.getText().toString());
-                    jsonObject.put("claveUsuario",txtPersonaPassword.getText().toString());
+                    jsonObject.put("claveUsuario",JsonUtils.makeMD5(txtPersonaPassword.getText().toString()));
                     url += "usuario/update";
                 }
                 else

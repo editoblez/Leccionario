@@ -83,8 +83,8 @@ public class ChangePassActivity extends ActionBarActivity {
             JSONObject params = new JSONObject();
             try {
                 params.put("idUsuario", this.idUsuario);
-                params.put("oldPassword", oldPass.getText());
-                params.put("password", newPass.getText());
+                params.put("oldPassword", JsonUtils.makeMD5(oldPass.getText().toString()));
+                params.put("password", JsonUtils.makeMD5(newPass.getText().toString()));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
