@@ -60,6 +60,8 @@ public class CrearTemaActivity extends ActionBarActivity implements AdapterView.
         spListMateriaView = (Spinner) findViewById(R.id.spListMateriaView);
         spListMateriaView.setOnItemSelectedListener(this);
 
+
+
         fillMateria();
 
     }
